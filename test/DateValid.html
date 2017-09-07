@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>日期时间验证</title> 
+        <script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery-1.2.6.js"></script> 
+     
+    </head> 
+    <style>
+     
+     </style>   
+  
+    <body> 
+        <input type="text" onkeyup=" checkInputDate()">
+    
+     <span id="errorMessage" style="width:200px; height:30px; color:red;"></span>
+    
+     
+
+       
+        <script>   
+            //yyyy-mm-dd    
+            // function checkInputDate(obj){
+            //     var strDate = $("input").val();
+            //     console.log(strDate);
+            //     var  re =/^(\d{4})-(\d{2})-(\d{2})$/; 
+            //     if(re.test(strDate))//判断日期格式符合YYYY-MM-DD标准 
+            //     { 
+            //         var dateElement=new Date(RegExp.$1,parseInt(RegExp.$2,10)-1,RegExp.$3); 
+            //         console.log(dateElement);
+
+            //         if(!((dateElement.getFullYear()==parseInt(RegExp.$1))&&((dateElement.getMonth()+1)==parseInt(RegExp.$2,10))&&(dateElement.getDate()==parseInt(RegExp.$3))))//判断日期逻辑 
+            //         { 
+            //         $("#errorMessage").css("display","inline-block").innerText = "You can only input Date.(YYYY-MM-DD) !";
+            //         } else{
+            //             $("#errorMessage").css("display","none");
+            //             //_this.data.value = strDate;
+            //         }
+            //     }               
+            //     else{
+            //        $("#errorMessage").text("You can only input Date.(YYYY-MM-DD) !") ;
+            //        // $("input").val(' ');
+            //     }
+            // }
+
+            //YYYY-MM-DD hh:mm:ss
+            // function checkInputDate(obj){
+            //     var strDate = $("input").val();
+            //     console.log(strDate);
+            //     var  re =/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/; 
+            //     console.log(re.test(strDate) ==true)
+            //     if(re.test(strDate)==true)//判断日期格式符合YYYY-MM-DD标准 
+            //     { 
+            //         var dateElement=new Date(RegExp.$1,parseInt(RegExp.$2,10)-1,RegExp.$3,RegExp.$4,RegExp.$5,RegExp.$6); 
+            //         console.log( dateElement)
+            //         if(!((dateElement.getFullYear()==parseInt(RegExp.$1))&&((dateElement.getMonth()+1)==parseInt(RegExp.$2,10))&&(dateElement.getDate()==parseInt(RegExp.$3))&&(dateElement.getHours()==parseInt(RegExp.$4))&&(dateElement.getMinutes()==parseInt(RegExp.$5))&&(dateElement.getSeconds()==parseInt(RegExp.$6))))//判断日期逻辑 
+            //         { 
+            //         $("#errorMessage").css("display","inline-block").text("You can only input Date.(YYYY-MM-DD) !");
+            //         } else{
+            //             $("#errorMessage").css("display","none");
+            //             //_this.data.value = strDate;
+            //         }
+            //     }               
+            //     else{
+            //         $("#errorMessage").text("You can only input Date.(YYYY-MM-DD) !") ;
+            //        // $("input").val(' ');
+            //     }
+            // }
+
+            // hh:mm:ss
+            function checkInputDate(){
+                var strDate = $("input").val();
+                console.log(strDate);
+                 var   re=/^((20|21|22|23|[0-1]\d)\:[0-5][0-9])(\:[0-5][0-9])?$/;       
+                if( re.test(strDate) )//判断日期格式符合YYYY-MM-DD标准 
+                {                 
+                    $("#errorMessage").css("display","none");
+                }             
+                else{
+                    $("#errorMessage").css("display","inline-block").text("You can only input Date.(YYYY-MM-DD) !") ;
+                   // $("input").val(' ');
+                }
+            }
+
+        </script> 
+    </body> 
+</html>
+

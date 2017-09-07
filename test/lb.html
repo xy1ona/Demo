@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>pic player</title> 
+        <script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery-1.2.6.js"></script> 
+     
+    </head> 
+    <style>
+     
+     </style>   
+  
+    <body> 
+        <div id="picplayer" style="position:relative;overflow:hidden;clear:none;border:solid 1px #ccc;"> 
+            <!--图片-->
+            <div id="piccontent" style="width:500px; height:500px;background:black">
+                    
+            </div>
+            <!--按钮-->
+            <div id="picbtnHolder" style="width:50px;height:50px;z-index:10000;">
+                <div id="picbtns" style="float:right; padding-right:1px;">
+
+                </div>
+            </div>
+        </div>
+
+        </div> 
+        <script>       
+        var p = $("#picplayer")  
+            var  rows =[
+                    {
+                        fieldName:'zs',
+                        fieldId:'images/1.jpg'
+                    },
+                     {
+                        fieldName:'ls',
+                        fieldId:'images2.jpg'
+                    },
+                     {
+                        fieldName:'ww',
+                        fieldId:'images/3.jpg'
+                    },
+                     {
+                        fieldName:'mm',
+                        fieldId:'images/4.jpg'
+                    },
+                ]
+           
+          initPicPlayer(rows); 
+            function initPicPlayer(rows) 
+            { 
+                //选中的图片 
+                var selectedItem; 
+                //选中的按钮 
+                var selectedBtn;             
+                //选中图片的索引 
+                var selectedIndex; 
+                             
+             $.each(rows, function(i, item){
+                //添加图片到容器中 
+                $('#piccontent').append('<img id="picitem'+i+'" style="display: none; "src="'+rows[i]['fieldId']+'" />');      
+
+                //增加图片对应的按钮 
+                $('#picbtns').append('<span id="picbtn'+i+'" style="background-color:#eee; display:inline-block;"> '+(rows[i]['fieldName'])+' </span> '); 
+                $('#picbtn'+i).data('index',i); 
+                $('#picbtn'+i).click( 
+                    function(event) 
+                    { 
+                        if(selectedItem.attr('src') == $('#picitem'+$(this).data('index')).attr('src')) 
+                        { 
+                            return; 
+                        } 
+                        setSelectedItem($(this).data('index')); 
+                    } 
+                ); 
+                 
+            });
+                /// 
+                setSelectedItem(0); 
+                //显示指定的图片index 
+                function setSelectedItem(index) 
+                { 
+                    selectedIndex = index; 
+                    //alert(index); 
+                    if(selectedItem){
+                        selectedItem.css('display','none'); 
+                    }
+                    selectedItem = $('#picitem'+index); 
+                    selectedItem.css('display','block'); 
+                    // 
+                    if(selectedBtn) 
+                    { 
+                        selectedBtn.css('backgroundColor','#eee'); 
+                        selectedBtn.css('color','#000'); 
+                    } 
+                    selectedBtn = $('#picbtn'+index); 
+                    selectedBtn.css('backgroundColor','#000'); 
+                    selectedBtn.css('color','#fff'); 
+                  
+                } 
+            } 
+
+             
+
+        </script> 
+
+         
+    </body> 
+</html>
+
+<!--http://www.jb51.net/article/17008.htm-->

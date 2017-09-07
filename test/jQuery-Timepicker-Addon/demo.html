@@ -1,0 +1,47 @@
+﻿<html>
+<head>
+    <title></title>
+    
+    <link type="text/css" href="jQuery-Timepicker-Addon/jquery-ui.css" rel="stylesheet" />
+
+    <link href="jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.css" type="text/css" />
+    <!--<link href="jQuery-Timepicker-Addon/demos.css" rel="stylesheet" type="text/css" />-->
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-sliderAccess.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script src="jQuery-Timepicker-Addon/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+  
+
+    <!--中文-->
+    <script src="js/jquery.ui.datepicker-zh-CN.js.js" type="text/javascript" charset="gb2312"></script>
+    <script src="js/jquery-ui-timepicker-zh-CN.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(function () {
+            // 时间设置
+           $('#time').datetimepicker({
+                timeInput:true,
+                timeFormat: "HH:mm:ss",
+                dateFormat: "yy-mm-dd",
+                 addSliderAccess:true,
+	             sliderAccessArgs:{touchonly:false},
+                showHour:false,
+	            showMinute:false,
+                showSecond:false,
+                onClose:function(dateText, dp_inst){
+                    console.log(dateText)
+                    console.log(dp_inst)
+            
+                },
+                     
+            });
+        
+        });
+ 
+
+    </script>
+</head>
+<body>
+    <input id="time" type="text" />
+<button id="utility_example_2">ddddd</button>
+</body>
+</html>

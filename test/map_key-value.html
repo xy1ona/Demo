@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var map = {};
+        map['key1'] = 1;
+        map['key2@'] = 2;
+
+        console.log(map['key1']);//结果是1.
+        console.log(map['key2@']);//结果是2.
+
+        //如果遍历map
+        for(var prop in map){
+            if(map.hasOwnProperty(prop)){
+                console.log('key is ' + prop +' and value is' + map[prop]);
+            }
+        }
+        //
+        var key1 = '动态key1';
+        var key2 = '动态key2';
+        var map = {};
+        map[key1] = 1;
+        map[key2] = 2;
+
+        console.log(map[key1]);//结果是1.
+        console.log(map[key2]);//结果是2.
+
+        //如果遍历map
+        for(var prop in map){
+            if(map.hasOwnProperty(prop)){
+                console.log('key is ' + prop +' and value is' + map[prop]);
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+
+</html>

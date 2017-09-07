@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title></title>
+    
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        
+   function test(o) {
+  if(o.value.length != 4) return;
+  if(/^(((0|1)\d)|(2[0-3]))[0-5][0-9]$/.test(o.value)) {
+    o.value = o.value.replace(/(\d\d)(\d\d)/, "$1:$2");
+  }
+}
+ 
+
+//光标
+// 光标定位
+function dealKeyup(that) {
+    var input_val = $(that).val();
+    var input_arr = input_val.split("-");
+    for(var i=0;i<input_arr.length;i++) {
+        if (input_arr[i] == ' ') {
+            setCaretPosition(that, i*2);
+            return;
+        }
+    }
+}
+// 获取光标位置
+function getCursortPosition(ctrl) {
+    var CaretPos = 0;   // IE Support
+    if (document.selection) {
+        ctrl.focus();
+        var Sel = document.selection.createRange();
+        Sel.moveStart ('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    }
+    // Firefox support
+    else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+        CaretPos = ctrl.selectionStart;
+    return (CaretPos);
+}
+
+// 设置光标位置
+function setCaretPosition(ctrl, pos){
+    if(ctrl.setSelectionRange)
+    {
+        ctrl.focus();
+        ctrl.setSelectionRange(pos,pos);
+    }
+    else if (ctrl.createTextRange) {
+        var range = ctrl.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', pos);
+        range.moveStart('character', pos);
+        range.select();
+    }
+}
+
+    </script>
+</head>
+<body>
+ <input type=text name=t onkeyup=test(this)>
+<input class="put" id="number-password-input" type="tel" maxlength="12" tabindex="6" onkeyup="dealKeyup(this);" value="12-23-3213-31">
+</body>
+</html>
