@@ -1,0 +1,112 @@
+<!doctype html>
+    <head>
+    <meta charset="UTF-8">
+    <title>左右结构流程图</title>
+    <link rel="stylesheet" href="./drawTop.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jsPlumb/2.7.16/js/jsplumb.min.js"></script>
+    <script src="./drawTopo.js"></script>
+        <script type="text/javascript">
+            jsPlumb.bind("ready", function() {
+
+                // 拓扑数据结构根节点位置设置
+                var rootPosition = [100, 300];
+                var nodeTypeArray = ['START', 'RIGHT', 'MIDDLE', 'LEFT'];    //VM起点,NC主线
+                var topoData = {
+                    type: 'START', node_name: '开始',flow_id:'1',
+                    rel: [
+                        {
+                            type: 'MIDDLE',
+                            node_name: '1',
+                        },
+                        {
+                            type: 'MIDDLE',
+                            node_name: '2',
+                            rel: [
+                                { type: 'LEFT', node_name: '2a' ,flow_id:'1'},
+                                { type: 'LEFT', node_name: '2b',flow_id:'1' },
+                                { type: 'LEFT', node_name: '2c',flow_id:'1' },
+                                { type: 'LEFT', node_name: '2d',flow_id:'1' },
+                                { type: 'LEFT', node_name: '2e' ,flow_id:'1'},
+                                { type: 'LEFT', node_name: '2f',flow_id:'1' },
+                                { type: 'LEFT', node_name: '2g',flow_id:'1' },
+                                { type: 'LEFT', node_name: '2h',flow_id:'1' }
+                            ]
+
+                        },
+                        {
+                            type: 'MIDDLE',
+                            node_name: '3',
+                            rel: [
+                                { type: 'RIGHT', node_name: '31',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '32',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '33',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '34' ,flow_id:'1'},
+                                { type: 'RIGHT', node_name: '35' },
+                                { type: 'RIGHT', node_name: '36',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '37',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '38',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '39' ,flow_id:'1'},
+                                { type: 'RIGHT', node_name: '40' },
+                                // { type: 'LEFT', node_name: 'p' },
+                                // { type: 'LEFT', node_name: 'o' },
+                                // { type: 'LEFT', node_name: 'i' },
+                                // { type: 'LEFT', node_name: 'u' }
+                            ]
+                        },{
+                            type: 'MIDDLE',
+                            node_name: '4',
+                            rel: [
+                                { type: 'LEFT', node_name: '31',flow_id:'1' },
+                                { type: 'LEFT', node_name: '4b',flow_id:'1' },
+                                { type: 'LEFT', node_name: '4c',flow_id:'1' },
+                                { type: 'LEFT', node_name: '4d',flow_id:'1' },
+                                // { type: 'RIGHT', node_name: '41' },
+                                // { type: 'RIGHT', node_name: '42' },
+                                // { type: 'RIGHT', node_name: '43' },
+                                // { type: 'RIGHT', node_name: '44' },
+                                // { type: 'RIGHT', node_name: '45' },
+                            ]
+
+                        },
+                        {
+                            type: 'MIDDLE',
+                            node_name: '5',
+                            rel: [
+                                { type: 'RIGHT', node_name: '51',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '52',flow_id:'1' },
+                                { type: 'RIGHT', node_name: '53',flow_id:'1'},
+                                { type: 'RIGHT', node_name: '54' ,flow_id:'1'},
+                                { type: 'RIGHT', node_name: '56' ,flow_id:'1'},
+                            ]
+
+                        },
+                        {
+                            type: 'MIDDLE',
+                            node_name: '6',
+                            rel: [
+                                { type: 'LEFT', node_name: '6A',flow_id:'1' },
+                                { type: 'LEFT', node_name: '6B' ,flow_id:'1'},
+                                { type: 'LEFT', node_name: '6C',flow_id:'1' },
+                            ]
+
+                        },
+                        {
+                            type: 'MIDDLE',
+                            node_name: '结束',
+                        },
+                    ]
+                };
+
+                drawTopo(topoData, rootPosition, nodeTypeArray);
+            });
+        </script>
+
+    </head>
+    <body>
+
+        <div id="topoRegion">
+        </div>
+
+    </body>
+</html>

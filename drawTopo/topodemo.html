@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <title>jsPlumb 1.5.3 - flowchart connectors demonstration - jQuery</title>
+    <link href="https://cdn.bootcss.com/jsPlumb/2.7.16/css/jsplumbtoolkit-defaults.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./drawTop.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jsPlumb/2.7.16/js/jsplumb.min.js"></script>
+    <!--  demo code -->
+    <script src="./drawTopo.js"></script>
+
+    <script type="text/javascript">
+        jsPlumb.bind("ready", function() {
+
+            // 拓扑数据结构根节点位置设置
+            var rootPosition = [270, 300];
+            var nodeTypeArray = ['VM', 'DEVICE', 'NC', 'VIP'];
+            var topoData = {
+                type: 'VM', key: '110.75.188.35',
+                rel: [
+                    {
+                        type: 'DEVICE',
+                        key: '3-120343'
+                    },
+
+                    {
+                        type: 'DEVICE',
+                        key: '3-120344'
+                    },
+
+                    {
+                        type: 'VIP',
+                        key: '223.6.250.2',
+                        rel: [
+                            { type: 'VM', key: '110.75.189.12' },
+                            { type: 'VM', key: '110.75.189.13' }
+                        ]
+                    },
+
+                    {
+                        type: 'NC',
+                        key: '10.242.192.2',
+                        rel: [
+                            { type: 'VM', key: '110.75.188.132' },
+                            { type: 'VM', key: '110.75.188.135' }
+                        ]
+
+                    }
+                ]
+            };
+
+            drawTopo(topoData, rootPosition, nodeTypeArray);
+
+            var newTopoData = {
+                type: 'NC',
+                key: '10.242.192.2',
+                rel: [
+                    { type: 'VM', key: '110.75.188.140' }
+                ]
+            };
+
+            var mergedTopoData = mergeNewTopo(topoData, newTopoData);
+            $('#topoRegion').empty();
+            drawTopo(mergedTopoData, rootPosition, nodeTypeArray);
+
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+
+<div id="topoRegion">
+</div>
+
+</body>
+</html>

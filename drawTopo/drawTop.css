@@ -1,0 +1,18 @@
+.node {
+    background-color:white;
+    border:1px solid #346789;
+    text-align:center;
+    z-index:24;
+    cursor:pointer;
+    box-shadow: 2px 2px 19px #aaa;
+    border-radius:0.5em;
+    position:absolute;
+    color:black;
+    padding:0.5em;
+    width:80px;
+    height:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.15s ease-in;
+}
