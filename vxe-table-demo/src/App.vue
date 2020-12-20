@@ -50,6 +50,7 @@
       <button @click="$refs.plTreeTable.clearTreeExpand()">关闭所有</button>
     </p>
     <u-table
+      id="uTable"
       ref="plTreeTable"
       :data="tableData"
       :height="height"
@@ -100,7 +101,7 @@ export default {
         { field: 'name2', title: 'Name2' }
       ],
       tableData: [],
-      height: 1500,
+      height: 500,
     }
   },
   created() {
@@ -6585,6 +6586,7 @@ export default {
       }
     ]
 
+
     // for(let i=0; i<20; i++) {
     //   const index = i;
     //   this.tableData.push({
@@ -6633,14 +6635,22 @@ export default {
   },
   mounted() {
     this.$nextTick(()=> {
+      this.height = this.tableData.length *61 + 100
       console.timeEnd()
     })
   },
   methods: {
     zhankai() {
-      this.height = 400 * 2
-
+      // this.height = 400 * 2
       this.$refs.plTreeTable.setAllTreeExpansion()
+
+      console.log(this.$refs.plTreeTable)
+      setTimeout(()=> {
+        console.log(document.getElementsByClassName('el-table__body')[0].childNodes[1].childNodes)
+
+        this.height = document.getElementsByClassName('el-table__body')[0].childNodes[1].childNodes.length * 61
+      },100)
+
     }
   }
 }
@@ -6654,5 +6664,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+/deep/ table tr td {
+  height: 38px !important;
+  line-height: 38px !important;
 }
 </style>
