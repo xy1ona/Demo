@@ -8,13 +8,16 @@ import 'xe-utils'
 import VXETable from 'vxe-table'
 import 'vxe-table/lib/style.css'
 
-//import VXETablePluginVirtualTree from 'vxe-table-plugin-virtual-tree'
-// import 'vxe-table-plugin-virtual-tree/dist/style.css'
+import 'umy-ui/lib/theme-chalk/index.css'// 引入样式
+
+import { UTable, UTableColumn } from 'umy-ui'
 
 Vue.config.productionTip = false
 
 Vue.use(VXETable)
-//VXETable.use(VXETablePluginVirtualTree)
+
+Vue.use(UTable)
+Vue.use(UTableColumn)
 
 /* eslint-disable no-new */
 new Vue({

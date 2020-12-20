@@ -13,27 +13,80 @@
       show-overflow
       ref="xTree"
       row-id="codeId"
-      max-height="1500"
+      max-height="1000"
       :tree-config="{children: 'children'}"
       :data="tableData">
       <vxe-table-column fixed="left"  width="300" field="codeName" tree-node></vxe-table-column>
-        <vxe-table-column width="100" v-for="i in 100" :key="i">
+      <vxe-table-colgroup title="基本信息1">
+        <vxe-table-colgroup title="基本信息1-1">
+          <template v-for="(item, index) in tableColumn">
+            <vxe-table-column v-if="index==1" :field="item.field" :title="item.title" width="200">
+              <template slot-scope="scope">
+                {{item.field}}
+              </template>
+            </vxe-table-column>
+            <vxe-table-column v-else :field="item.field" :title="item.title" width="200">
+              <template slot-scope="scope">
+                {{item.field}}
+              </template>
+            </vxe-table-column>
+          </template>
+        </vxe-table-colgroup>
+      </vxe-table-colgroup>
 
-        </vxe-table-column>
+      <vxe-table-column v-for="i in 10" :key="i">
+        <template slot-scope="scope">
+          {{i}}
+        </template>
+      </vxe-table-column>
 
 
     </vxe-table>
 
-<!--    <vxe-virtual-tree-->
-<!--      show-overflow-->
-<!--      row-key-->
-<!--      row-id="id"-->
-<!--      height="1000"-->
-<!--      :data="tableData"-->
-<!--      :tree-config="{children: 'children'}"-->
-<!--      :columns="tableColumn">-->
-<!--    </vxe-virtual-tree>-->
-<!--    <router-view/>-->
+    <p style="margin: 20px 0;">
+      <button @click="$refs.plTreeTable.toggleTreeExpansion(tableData[0])">切换第一个</button>
+      <button @click="$refs.plTreeTable.setTreeExpansion(tableData[2], true)">展开第三个</button>
+      <button @click="zhankai">展开全部</button>
+      <button @click="$refs.plTreeTable.clearTreeExpand()">关闭所有</button>
+    </p>
+    <u-table
+      ref="plTreeTable"
+      :data="tableData"
+      :height="height"
+      row-id="codeId"
+      :treeConfig="{
+         children: 'children',
+          iconClose: 'el-icon-folder-add',
+         iconOpen: 'el-icon-folder-remove',
+         expandAll: false}"
+      use-virtual
+      border>
+      <u-table-column
+        :tree-node="true"
+        prop="codeName"
+        label="我是树节点"
+        fixed
+        :width="200"/>
+      <u-table-column label="配送信息">
+        <template v-for="(item, index) in tableColumn">
+          <u-table-column v-if="index==1" :prop="item.field" :label="item.title" width="200">
+            <template slot-scope="scope">
+              {{item.field}}
+            </template>
+          </u-table-column>
+          <u-table-column v-else :prop="item.field" :label="item.title" width="200">
+            <template slot-scope="scope">
+              {{item.field}}
+            </template>
+          </u-table-column>
+        </template>
+      </u-table-column>
+      <u-table-column v-for="i in 200" :key="i">
+        <template slot-scope="scope">
+          {{i}}
+        </template>
+      </u-table-column>
+    </u-table>
   </div>
 </template>
 
@@ -43,9 +96,11 @@ export default {
   data () {
     return {
       tableColumn: [
-        { field: 'name', title: 'Name', treeNode: true },
+        { field: 'name1', title: 'Name1' },
+        { field: 'name2', title: 'Name2' }
       ],
-      tableData: []
+      tableData: [],
+      height: 1500,
     }
   },
   created() {
@@ -6580,6 +6635,13 @@ export default {
     this.$nextTick(()=> {
       console.timeEnd()
     })
+  },
+  methods: {
+    zhankai() {
+      this.height = 400 * 2
+
+      this.$refs.plTreeTable.setAllTreeExpansion()
+    }
   }
 }
 </script>
